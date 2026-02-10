@@ -3,7 +3,7 @@
 void Robot::InitializeRobot(void)
 {
     chassis.InititalizeChassis();
-
+    pinMode(12, INPUT_PULLUP);
     /**
      * TODO: Set pin 13 HIGH when navigating and LOW when destination is reached.
      * Need to set as OUTPUT here.
@@ -27,16 +27,14 @@ void Robot::RobotLoop(void)
      /**
      * Run the chassis loop, which handles low-level control.
      */
+
+    Serial.println("loop is running");
     Twist velocity;
     if(chassis.ChassisLoop(velocity))
     {
         // We do FK regardless of state
         UpdatePose(velocity);
 
-        chassis.SetMotorEfforts(50, 50);
-        if (currPose.x > 60){
-            chassis.Stop();
-        }
         /**
          * Here, we break with tradition and only call these functions if we're in the 
          * DRIVE_TO_POINT state. CheckReachedDestination() is expensive, so we don't want

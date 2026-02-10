@@ -146,10 +146,10 @@ Twist Chassis::CalcOdomFromWheelMotion(void)
      * 
      * In that case, you should return a Pose instead of a Twist.
      */
-    float leftVelocity = (leftMotor.speed / LEFT_TICKS_PER_CM);
-    float rightVelocity = (rightMotor.speed / RIGHT_TICKS_PER_CM);
-    float velo = (leftVelocity + rightVelocity) / 2;
-    float angular = (leftVelocity-rightVelocity)/ROBOT_RADIUS;
+    float leftVelocity = (leftMotor.speed / LEFT_TICKS_PER_CM) * 50.0;
+    float rightVelocity = (rightMotor.speed / RIGHT_TICKS_PER_CM) * 50.0;
+    float velo = (leftVelocity + rightVelocity) / 2.0;
+    float angular = (leftVelocity-rightVelocity)/(ROBOT_RADIUS * 2.0);
     velocity = Twist(velo, 0, angular);
     
 #ifdef __NAV_DEBUG__

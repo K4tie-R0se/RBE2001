@@ -17,6 +17,7 @@ void setup()
 #endif
 
   robot.InitializeRobot();
+  robot.SetDestination(Pose(40.8, 0.0, 0));
 }
 
 void loop() 

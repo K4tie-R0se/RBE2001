@@ -27,11 +27,15 @@ protected:
      */
     Pose currPose;
     Pose destPose;
+
+    bool prevButtonAState = HIGH;
+    bool firstLoop = true;
     
 public:
     Robot(void) {keyString.reserve(10);}
     void InitializeRobot(void);
     void RobotLoop(void);
+    void SetDestination(const Pose& destination);
 
 protected:
     /* State changes */    
@@ -39,7 +43,6 @@ protected:
 
     // /* Navigation methods.*/
     void UpdatePose(const Twist& u);
-    void SetDestination(const Pose& destination);
     void DriveToPoint(void);
     bool CheckReachedDestination(void);
     void HandleDestination(void);
